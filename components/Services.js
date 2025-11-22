@@ -47,7 +47,7 @@ export default function Services() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="section-title">Nos Services</h2>
+                    <h2 className="section-title">Nos <span className="text-gradient">Services</span></h2>
                     <p className="section-subtitle">
                         Une expertise complète pour vous accompagner à chaque étape de votre projet solaire.
                     </p>
@@ -61,7 +61,7 @@ export default function Services() {
                     viewport={{ once: true }}
                 >
                     {services.map((service, index) => (
-                        <motion.div key={index} className={styles.card} variants={item}>
+                        <motion.div key={index} className={`${styles.card} glass-panel`} variants={item}>
                             <div className={styles.iconWrapper}>
                                 {service.icon}
                             </div>

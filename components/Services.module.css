@@ -1,55 +1,75 @@
 .services {
-    background-color: var(--surface);
+    position: relative;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 .card {
-    background: var(--background);
-    padding: 40px 30px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
+    padding: 40px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary);
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .iconWrapper {
-    width: 70px;
-    height: 70px;
-    background: rgba(253, 184, 19, 0.1);
-    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     color: var(--primary);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card:hover .iconWrapper {
-    background: var(--primary);
-    color: white;
+    background: var(--gradient-solar);
+    color: black;
+    transform: rotate(5deg) scale(1.1);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
 }
 
 .cardTitle {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: var(--secondary);
+    color: white;
+    position: relative;
 }
 
 .cardDescription {
-    color: var(--text-light);
-    line-height: 1.6;
+    color: var(--text-muted);
+    line-height: 1.7;
+    position: relative;
 }

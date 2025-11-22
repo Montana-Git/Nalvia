@@ -12,7 +12,7 @@ export default function ContactForm() {
         phone: '',
         message: ''
     });
-    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+    const [status, setStatus] = useState('idle');
 
     // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
     const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
@@ -27,11 +27,6 @@ export default function ContactForm() {
         setStatus('loading');
 
         try {
-            // We use no-cors mode because Google Scripts doesn't support CORS headers for simple POSTs easily without redirects
-            // However, with no-cors we can't read the response. We assume success if no network error.
-            // Alternatively, we can use a proxy or JSONP, but form submission is simplest.
-
-            // Using FormData for Google Apps Script compatibility
             const data = new FormData();
             data.append('name', formData.name);
             data.append('email', formData.email);
@@ -64,6 +59,8 @@ export default function ContactForm() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className={styles.title}>Contactez-nous</h2>
+                        <p className={styles.subtitle}>Prêt à passer au solaire ? Demandez votre devis gratuit.</p>
+
                         <form onSubmit={handleSubmit}>
                             <div className={styles.formGroup}>
                                 <label htmlFor="name" className={styles.label}>Nom complet</label>
@@ -116,7 +113,7 @@ export default function ContactForm() {
                                     onChange={handleChange}
                                     required
                                     className={styles.textarea}
-                                    placeholder="Comment pouvons-nous vous aider ?"
+                                    placeholder="Détails de votre projet..."
                                 />
                             </div>
 
@@ -127,7 +124,7 @@ export default function ContactForm() {
                                     </span>
                                 ) : (
                                     <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                        Envoyer <Send size={20} />
+                                        Envoyer la demande <Send size={20} />
                                     </span>
                                 )}
                             </button>

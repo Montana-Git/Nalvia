@@ -13,7 +13,7 @@ export default function About() {
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.8 }}
                     >
                         <div className={styles.imagePlaceholder}>
                             [Image Équipe / Installation]
@@ -25,27 +25,29 @@ export default function About() {
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <h2 className="section-title" style={{ textAlign: 'left' }}>Qui sommes-nous ?</h2>
-                        <p style={{ lineHeight: 1.8, color: 'var(--text-light)', marginBottom: '20px' }}>
-                            Nalvia est une entreprise tunisienne nouvelle génération, dédiée à la démocratisation de l'énergie solaire.
-                            Fondée sur des valeurs d'innovation et de durabilité, nous nous engageons à fournir des solutions énergétiques
-                            propres et accessibles à tous les foyers et entreprises de Tunisie.
+                        <h2 className="section-title" style={{ textAlign: 'left' }}>L'Innovation <br /><span className="text-gradient">Au Service du Durable</span></h2>
+                        <p style={{ lineHeight: 1.8, color: 'var(--text-muted)', marginBottom: '20px', fontSize: '1.1rem' }}>
+                            Nalvia redéfinit les standards de l'énergie solaire en Tunisie.
+                            Nous ne posons pas seulement des panneaux ; nous concevons des écosystèmes énergétiques intelligents.
                         </p>
-                        <p style={{ lineHeight: 1.8, color: 'var(--text-light)' }}>
-                            Notre équipe d'experts certifiés utilise les dernières technologies pour garantir des installations
-                            performantes et esthétiques.
+                        <p style={{ lineHeight: 1.8, color: 'var(--text-muted)', fontSize: '1.1rem' }}>
+                            Alliant esthétique premium et performance maximale, nos solutions s'intègrent harmonieusement à votre architecture tout en réduisant drastiquement votre empreinte carbone.
                         </p>
 
                         <div className={styles.stats}>
                             <div className={styles.statItem}>
                                 <h4>100%</h4>
-                                <p>Satisfaction Client</p>
+                                <p>Satisfaction</p>
                             </div>
                             <div className={styles.statItem}>
                                 <h4>24/7</h4>
-                                <p>Support Technique</p>
+                                <p>Monitoring</p>
+                            </div>
+                            <div className={styles.statItem}>
+                                <h4>10ans</h4>
+                                <p>Garantie</p>
                             </div>
                         </div>
                     </motion.div>
