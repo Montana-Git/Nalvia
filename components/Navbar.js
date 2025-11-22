@@ -7,6 +7,7 @@ import styles from './Navbar.module.css';
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,6 +21,10 @@ export default function Navbar() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
         <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
@@ -40,6 +45,32 @@ export default function Navbar() {
                     <Link href="#contact" className={`btn btn-primary ${styles.ctaButton}`}>
                         Devis Gratuit
                     </Link>
+
+                    {/* Mobile Hamburger - Hidden on Desktop via CSS */}
+                    <button
+                        className={`${styles.hamburger} ${isOpen ? styles.active : ''}`}
+                        onClick={toggleMenu}
+                        aria-label="Toggle Menu"
+                    >
+                        <span className={styles.bar}></span>
+                        <span className={styles.bar}></span>
+                        <span className={styles.bar}></span>
+                    </button>
+
+                    {/* Mobile Menu Overlay - Hidden on Desktop via CSS */}
+                    <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}>
+                        <ul className={styles.mobileLinks}>
+                            <li><Link href="#home" onClick={toggleMenu}>Accueil</Link></li>
+                            <li><Link href="#about" onClick={toggleMenu}>À propos</Link></li>
+                            <li><Link href="#services" onClick={toggleMenu}>Services</Link></li>
+                            <li><Link href="#contact" onClick={toggleMenu}>Contact</Link></li>
+                            <li>
+                                <Link href="#contact" className="btn btn-primary" onClick={toggleMenu}>
+                                    Devis Gratuit
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>

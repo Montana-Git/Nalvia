@@ -64,9 +64,20 @@
     font-size: 1.2rem;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
     .content {
         flex-direction: column-reverse;
+        gap: 40px;
+    }
+
+    .text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section-title {
+        text-align: center !important;
+        /* Force center on mobile */
     }
 
     .imageWrapper {
@@ -76,5 +87,7 @@
 
     .stats {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
     }
 }

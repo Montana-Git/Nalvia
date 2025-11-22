@@ -3,31 +3,39 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    /* Side by side */
     overflow: hidden;
     padding-top: 100px;
+    max-width: 1400px;
+    /* Constrain width on large screens */
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .heroContent {
     position: relative;
     z-index: 2;
-    max-width: 650px;
-    /* Slightly narrower to give space to image */
+    flex: 0.8;
+    /* Reduce text space slightly */
+    max-width: 550px;
+    padding-right: 20px;
 }
 
 .title {
-    font-size: 5rem;
-    /* Larger */
+    font-size: 4.5rem;
     font-weight: 800;
     color: white;
     margin-bottom: 1.5rem;
-    line-height: 1.05;
+    line-height: 1.1;
     letter-spacing: -2px;
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--text-muted);
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
     line-height: 1.6;
     max-width: 550px;
 }
@@ -39,20 +47,20 @@
 
 /* 3D Hero Image Container */
 .heroImageWrapper {
-    position: absolute;
-    right: -5%;
-    /* Push slightly off screen for dynamic feel */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 65%;
-    /* Much larger */
+    position: relative;
+    flex: 1.2;
+    /* Give image more space */
     height: 85vh;
-    z-index: 1;
+    /* Taller */
+    min-width: 600px;
+    /* Prevent shrinking too much */
     display: flex;
     align-items: center;
     justify-content: center;
     perspective: 2000px;
-    /* Deep perspective for 3D */
+    z-index: 1;
+    right: -5%;
+    /* Shift slightly right for dynamic feel */
 }
 
 .heroImage {
@@ -62,10 +70,8 @@
     overflow: hidden;
     position: relative;
     box-shadow:
-        -50px 0 100px rgba(0, 0, 0, 0.5),
-        /* Deep shadow */
+        -20px 0 60px rgba(0, 0, 0, 0.5),
         0 0 30px rgba(255, 215, 0, 0.1);
-    /* Glow */
     border: 1px solid rgba(255, 255, 255, 0.1);
     transform-style: preserve-3d;
 }
@@ -75,69 +81,85 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    transform: scale(1.1);
-    /* Zoom in slightly for parallax */
+    transform: scale(1.0);
+    /* Reset scale */
+    object-fit: cover;
 }
 
-/* Floating Badge - Enhanced */
+/* Floating Badge */
 .badge {
     position: absolute;
-    bottom: 80px;
-    left: 50px;
-    /* Moved inside */
-    background: rgba(2, 6, 23, 0.6);
+    bottom: 60px;
+    left: 40px;
+    background: rgba(2, 6, 23, 0.7);
     backdrop-filter: blur(20px);
-    padding: 25px 35px;
-    border-radius: 24px;
+    padding: 20px 30px;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    gap: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    gap: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     transform: translateZ(50px);
-    /* Float above image */
 }
 
 .badgeIcon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: var(--gradient-solar);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: black;
-    box-shadow: 0 0 20px var(--primary-glow);
+    box-shadow: 0 0 15px var(--primary-glow);
 }
 
 .badgeText h4 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: white;
     margin-bottom: 2px;
 }
 
 .badgeText p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .title {
+        font-size: 3.5rem;
+    }
+
+    .heroImageWrapper {
+        height: 600px;
+        min-width: 500px;
+    }
 }
 
 @media (max-width: 1024px) {
     .hero {
         flex-direction: column;
-        padding-top: 150px;
+        /* Stack vertically */
+        padding-top: 120px;
         text-align: center;
         height: auto;
-        padding-bottom: 100px;
+        padding-bottom: 80px;
     }
 
     .heroContent {
-        margin-bottom: 80px;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .title {
-        font-size: 3.5rem;
+    .subtitle {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .buttonGroup {
@@ -145,28 +167,46 @@
     }
 
     .heroImageWrapper {
-        position: relative;
         width: 100%;
         height: 500px;
-        right: auto;
-        top: auto;
-        transform: none;
-        perspective: none;
+        min-width: 0;
+        /* Reset min-width for mobile */
+        right: 0;
     }
 
     .heroImage {
         width: 90%;
-        height: 100%;
         margin: 0 auto;
         transform: none !important;
-        /* Disable 3D on mobile */
+        /* Disable 3D tilt on mobile */
     }
 
     .badge {
         left: 50%;
         transform: translateX(-50%);
-        bottom: -30px;
-        width: 90%;
-        max-width: 350px;
+        bottom: -20px;
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.8rem;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .heroImageWrapper {
+        height: 400px;
     }
 }

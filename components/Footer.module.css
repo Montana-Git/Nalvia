@@ -120,6 +120,35 @@
     }
 }
 
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .brand {
+        grid-column: span 1;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column {
+        text-align: center;
+    }
+
+    .socials {
+        justify-content: center;
+    }
+
+    .bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
 @media (max-width: 600px) {
     .grid {
         grid-template-columns: 1fr;
