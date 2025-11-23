@@ -1,9 +1,9 @@
 .footer {
     position: relative;
-    background: #020617;
+    background: var(--footer-bg);
     padding: 100px 0 40px;
     overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--footer-border);
 }
 
 /* Massive Watermark */
@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
     font-size: 20vw;
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.02);
+    color: var(--footer-watermark);
     pointer-events: none;
     z-index: 0;
     white-space: nowrap;
@@ -35,7 +35,7 @@
 
 .brand h3 {
     font-size: 2rem;
-    color: white;
+    color: var(--text-main);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@
 }
 
 .column h4 {
-    color: white;
+    color: var(--text-main);
     font-size: 1.1rem;
     margin-bottom: 25px;
     font-weight: 600;
@@ -84,13 +84,13 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-main);
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--footer-border);
 }
 
 .socialIcon:hover {
@@ -100,12 +100,12 @@
 }
 
 .bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--footer-border);
     padding-top: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 

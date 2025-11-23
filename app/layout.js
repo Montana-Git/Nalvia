@@ -2,6 +2,8 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ThreeBackground from "@/components/ThreeBackground";
 
+import { ThemeProvider } from "@/components/context/ThemeContext";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -24,8 +26,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={`${inter.variable} ${poppins.variable}`}>
       <body>
-        <ThreeBackground />
-        {children}
+        <ThemeProvider>
+          <ThreeBackground />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

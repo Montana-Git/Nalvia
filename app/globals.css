@@ -22,6 +22,50 @@
 
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  --nav-bg: rgba(2, 6, 23, 0.6);
+  --nav-text: white;
+  --nav-text-muted: rgba(255, 255, 255, 0.8);
+  --mobile-menu-bg: rgba(2, 6, 23, 0.95);
+  --badge-bg: rgba(2, 6, 23, 0.7);
+
+  --footer-bg: #020617;
+  --footer-border: rgba(255, 255, 255, 0.05);
+  --footer-watermark: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme='light'] {
+  --bg-dark: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+
+  --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+  --gradient-dark: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
+
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-text: #0f172a;
+  --nav-text-muted: #475569;
+  --mobile-menu-bg: rgba(255, 255, 255, 0.95);
+  --badge-bg: rgba(255, 255, 255, 0.8);
+
+  --footer-bg: #f1f5f9;
+  --footer-border: rgba(0, 0, 0, 0.1);
+  --footer-watermark: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme='light'] .btn-secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: #0f172a;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -134,7 +178,7 @@ button {
   font-size: 3rem;
   text-align: center;
   margin-bottom: 1rem;
-  color: white;
+  color: var(--text-main);
 }
 
 .section-subtitle {

@@ -26,7 +26,7 @@
 .title {
     font-size: 4.5rem;
     font-weight: 800;
-    color: white;
+    color: var(--text-main);
     margin-bottom: 1.5rem;
     line-height: 1.1;
     letter-spacing: -2px;
@@ -53,14 +53,14 @@
     height: 85vh;
     /* Taller */
     min-width: 600px;
-    /* Prevent shrinking too much */
+    /* Restore min-width for desktop */
     display: flex;
     align-items: center;
     justify-content: center;
     perspective: 2000px;
     z-index: 1;
-    right: -5%;
-    /* Shift slightly right for dynamic feel */
+    right: 0;
+    /* Reset right shift to avoid horizontal scroll */
 }
 
 .heroImage {
@@ -91,7 +91,7 @@
     position: absolute;
     bottom: 60px;
     left: 40px;
-    background: rgba(2, 6, 23, 0.7);
+    background: var(--badge-bg);
     backdrop-filter: blur(20px);
     padding: 20px 30px;
     border-radius: 20px;
@@ -117,7 +117,7 @@
 
 .badgeText h4 {
     font-size: 1.2rem;
-    color: white;
+    color: var(--text-main);
     margin-bottom: 2px;
 }
 
@@ -134,7 +134,7 @@
 
     .heroImageWrapper {
         height: 600px;
-        min-width: 500px;
+        min-width: 450px;
     }
 }
 
