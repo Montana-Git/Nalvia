@@ -23,6 +23,9 @@
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --card-highlight: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+
   --nav-bg: rgba(2, 6, 23, 0.6);
   --nav-text: white;
   --nav-text-muted: rgba(255, 255, 255, 0.8);
@@ -42,8 +45,15 @@
   --text-main: #0f172a;
   --text-muted: #475569;
 
+  --primary-glow: rgba(255, 140, 0, 0.3);
+  /* Darker orange glow for light mode */
+
   --glass-border: 1px solid rgba(0, 0, 0, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  /* Softer shadow */
+  --card-highlight: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
 
   --gradient-dark: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
 

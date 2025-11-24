@@ -15,7 +15,7 @@ export default function ContactForm() {
     const [status, setStatus] = useState('idle');
 
     // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7C4aIOotoPFRuqBg9twmMweDytmLfljdU-2XKWDRLa_hIluAVlejq7eNONMZfP6c0/exec";
 
     const handleChange = (e) => {
         const { name, value } = e.target;

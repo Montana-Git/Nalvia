@@ -7,15 +7,17 @@ import * as THREE from 'three';
 
 // --- Remastered Shape Generators ---
 
-// 1. Hero: Solar Architecture (Core + Gyroscopic Rings)
-function generateSolarArchitecture(count, radius) {
+// 1. Hero: Radiant Sun (Core + Rays) - Denser & Shinier
+function generateRadiantSun(count, radius) {
     const positions = new Float32Array(count * 3);
-    const coreCount = Math.floor(count * 0.5); // 50% in core
-    const ringCount = count - coreCount; // 50% in rings
+    // Increased core density for "Solid/Shiny" look
+    const coreCount = Math.floor(count * 0.75); // 75% in core
+    const rayCount = count - coreCount; // 25% in rays
 
-    // Core: Dense Energy Sphere
-    const coreRadius = radius * 0.5;
+    // Core: Dense Sphere (Tighter radius for brightness)
+    const coreRadius = radius * 0.85;
     for (let i = 0; i < coreCount; i++) {
+        // Bias towards center for glowing core effect
         const r = coreRadius * Math.pow(Math.random(), 0.5);
         const theta = Math.random() * 2 * Math.PI;
         const phi = Math.acos(2 * Math.random() - 1);
@@ -25,49 +27,27 @@ function generateSolarArchitecture(count, radius) {
         positions[i * 3 + 2] = r * Math.cos(phi);
     }
 
-    // Rings: 3 Gyroscopic Orbits
-    const numRings = 3;
-    const particlesPerRing = Math.floor(ringCount / numRings);
+    // Rays: Beams radiating out
+    const numRays = 12;
+    for (let i = 0; i < rayCount; i++) {
+        const rayIndex = i % numRays;
+        const phi = Math.acos(-1 + (2 * rayIndex) / numRays);
+        const theta = Math.sqrt(numRays * Math.PI) * phi;
 
-    for (let r = 0; r < numRings; r++) {
-        // Ring orientation (Euler angles)
-        const rotX = Math.random() * Math.PI;
-        const rotY = Math.random() * Math.PI;
-        const rotZ = Math.random() * Math.PI;
+        const dirX = Math.sin(phi) * Math.cos(theta);
+        const dirY = Math.sin(phi) * Math.sin(theta);
+        const dirZ = Math.cos(phi);
 
-        const ringRadius = radius * (1.2 + r * 0.4); // Rings get larger
+        // Distance along the ray
+        const dist = coreRadius + Math.random() * (radius * 4);
 
-        for (let i = 0; i < particlesPerRing; i++) {
-            const theta = (i / particlesPerRing) * 2 * Math.PI;
+        // Scatter
+        const scatter = 0.6;
 
-            // Base ring position (flat on XZ plane)
-            let x = ringRadius * Math.cos(theta);
-            let y = (Math.random() - 0.5) * 0.5; // Thin
-            let z = ringRadius * Math.sin(theta);
-
-            // Apply rotation manually
-            // Rotate X
-            let y1 = y * Math.cos(rotX) - z * Math.sin(rotX);
-            let z1 = y * Math.sin(rotX) + z * Math.cos(rotX);
-            y = y1; z = z1;
-
-            // Rotate Y
-            let x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
-            z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
-            x = x1; z = z1;
-
-            // Rotate Z
-            x1 = x * Math.cos(rotZ) - y * Math.sin(rotZ);
-            y1 = x * Math.sin(rotZ) + y * Math.cos(rotZ);
-            x = x1; y = y1;
-
-            const idx = coreCount + r * particlesPerRing + i;
-            if (idx < count) {
-                positions[idx * 3] = x;
-                positions[idx * 3 + 1] = y;
-                positions[idx * 3 + 2] = z;
-            }
-        }
+        const idx = coreCount + i;
+        positions[idx * 3] = dirX * dist + (Math.random() - 0.5) * scatter;
+        positions[idx * 3 + 1] = dirY * dist + (Math.random() - 0.5) * scatter;
+        positions[idx * 3 + 2] = dirZ * dist + (Math.random() - 0.5) * scatter;
     }
 
     return positions;
@@ -150,11 +130,12 @@ function generateVortex(count, radius, height) {
 
 function InteractiveParticles({ mouse, theme, scrollProgress }) {
     const meshRef = useRef();
+    // Increased count for density
     const count = 3000;
 
     // Pre-calculate all shapes (Remastered)
     const shapes = useMemo(() => [
-        generateSolarArchitecture(count, 6.0), // 0: Hero (Solar Architecture)
+        generateRadiantSun(count, 3.5), // 0: Hero (Radiant Sun)
         generateGlobe(count, 6.5),      // 1: About
         generateSaturnRing(count, 7.0), // 2: Partners
         generateMatrix(count, 12.0),    // 3: Services
@@ -318,7 +299,7 @@ function InteractiveParticles({ mouse, theme, scrollProgress }) {
             dummy.lookAt(lookAtTarget);
 
             // Increased Base Scale for visibility
-            const baseScale = 0.035;
+            const baseScale = 0.025;
             const stretch = 1 + (speed * 20);
 
             dummy.scale.set(baseScale, baseScale, baseScale * stretch);
@@ -332,19 +313,14 @@ function InteractiveParticles({ mouse, theme, scrollProgress }) {
         }
     });
 
-    // Light Mode Visibility Fix:
-    // 1. Darker Color (#d97706 - amber-600) instead of light yellow
-    // 2. Normal Blending instead of Additive (Additive washes out on white)
-    const materialProps = theme === 'light'
-        ? { color: '#d97706', blending: THREE.NormalBlending, opacity: 0.8 }
-        : { color: '#38bdf8', blending: THREE.AdditiveBlending, opacity: 0.6 };
-
     return (
         <instancedMesh ref={meshRef} args={[null, null, count]}>
             <boxGeometry args={[1, 1, 1]} />
             <meshBasicMaterial
-                {...materialProps}
+                color={theme === 'light' ? '#f59e0b' : '#38bdf8'}
                 transparent
+                opacity={0.6}
+                blending={THREE.AdditiveBlending}
             />
         </instancedMesh>
     );
